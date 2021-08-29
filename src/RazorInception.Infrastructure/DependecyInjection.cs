@@ -2,7 +2,7 @@
 
 namespace RazorInception.Infrastructure
 {
-    public class Class1
+    public class DependecyInjection
     {
     }
 }
