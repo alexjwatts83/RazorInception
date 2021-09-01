@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RazorInceptionLib.MyFeature.Pages
+namespace RazorInceptionLib.Areas.Edit.Pages
 {
-    public class Page1Model : PageModel
-    {
-        public void OnGet()
-        {
+	public class EditModel : PageModel
+	{
+		public void OnGet()
+		{
 
-        }
-    }
+		}
+	}
 }
