@@ -20,8 +20,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 
 		public IDbConnection Connection => new SqlConnection(_connectionString);
 
-		public BaseRepository(IOptions<ConnectionStringSettings> connectionStrings,
-								 IDistributedCache distributedCache)
+		public BaseRepository(IOptions<ConnectionStringSettings> connectionStrings, IDistributedCache distributedCache)
 		{
 			_connectionString = connectionStrings.Value.Database;
 			_distributedCache = distributedCache;
@@ -119,7 +118,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				TimeSpan.FromSeconds(cacheDuration));
 		}
 
-		public async Task<T> GetCachedSingleAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60)
+		public async Task<T> GetCachedSingleAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60) where T : class
 		{
 			string key = GetCacheKeyNameFromObject(storedProcedure, parameters);
 
@@ -129,7 +128,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				TimeSpan.FromSeconds(cacheDuration)).ConfigureAwait(false);
 		}
 
-		public T GetCachedSingle<T>(string storedProcedure, object parameters = null, int cacheDuration = 60)
+		public T GetCachedSingle<T>(string storedProcedure, object parameters = null, int cacheDuration = 60) where T : class
 		{
 			string key = GetCacheKeyNameFromObject(storedProcedure, parameters);
 
