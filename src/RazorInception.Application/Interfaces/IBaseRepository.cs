@@ -9,12 +9,12 @@ namespace RazorInception.Application.Interfaces
 		Task<IEnumerable<T>> GetDataAsync<T>(string storedProcedure, object parameters = null);
 		Task<IEnumerable<T>> GetCachedDataAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60);
 		Task<T> GetSingleAsync<T>(string storedProcedure, object parameters = null);
+		Task<T> GetCachedSingleAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60);
 
 		int Exectute(string storedProcedure, object parameters = null);
 		IEnumerable<T> GetData<T>(string storedProcedure, object parameters = null);
 		IEnumerable<T> GetCachedData<T>(string storedProcedure, object parameters = null, int cacheDuration = 60);
-
 		T GetSingle<T>(string storedProcedure, object parameters = null);
-		Task<T> GetCachedSingleAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60);
+		T GetCachedSingle<T>(string storedProcedure, object parameters = null, int cacheDuration = 60);
 	}
 }
