@@ -15,5 +15,6 @@ namespace RazorInception.Application.Interfaces
 		IEnumerable<T> GetCachedData<T>(string storedProcedure, object parameters = null, int cacheDuration = 60);
 
 		T GetSingle<T>(string storedProcedure, object parameters = null);
+		Task<T> GetCachedSingleAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60);
 	}
 }

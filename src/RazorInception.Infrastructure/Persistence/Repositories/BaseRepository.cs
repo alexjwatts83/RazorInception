@@ -118,5 +118,16 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				() => GetData<T>(storedProcedure, parameters),
 				TimeSpan.FromSeconds(cacheDuration));
 		}
+
+		public async Task<T> GetCachedSingleAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60)
+		{
+			string key = GetCacheKeyNameFromObject(storedProcedure, parameters);
+			var ss = await GetSingleAsync<T>(storedProcedure, parameters);
+			return await _distributedCache.GetOrCreateAsync(
+				key,
+				() => ss,
+				TimeSpan.FromSeconds(cacheDuration));
+			throw new NotImplementedException();
+		}
 	}
 }
