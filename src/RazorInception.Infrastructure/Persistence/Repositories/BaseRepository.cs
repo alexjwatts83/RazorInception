@@ -34,7 +34,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public async Task<IEnumerable<T>> GetCachedDataAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60)
+		public async Task<IEnumerable<T>> GetCachedDataAsync<T>(string storedProcedure, object parameters = null, int cacheDuration = 60) where T : class
 		{
 			string key = GetCacheKeyNameFromObject(storedProcedure, parameters);
 
@@ -44,7 +44,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				TimeSpan.FromSeconds(cacheDuration));
 		}
 
-		public async Task<IEnumerable<T>> GetDataAsync<T>(string storedProcedure, object parameters = null)
+		public async Task<IEnumerable<T>> GetDataAsync<T>(string storedProcedure, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{
@@ -55,7 +55,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public async Task<T> GetSingleAsync<T>(string storedProcedure, object parameters = null)
+		public async Task<T> GetSingleAsync<T>(string storedProcedure, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{
@@ -88,7 +88,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public IEnumerable<T> GetData<T>(string storedProcedure, object parameters = null)
+		public IEnumerable<T> GetData<T>(string storedProcedure, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{
@@ -98,7 +98,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public T GetSingle<T>(string storedProcedure, object parameters = null)
+		public T GetSingle<T>(string storedProcedure, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{
@@ -108,7 +108,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public IEnumerable<T> GetCachedData<T>(string storedProcedure, object parameters = null, int cacheDuration = 60)
+		public IEnumerable<T> GetCachedData<T>(string storedProcedure, object parameters = null, int cacheDuration = 60) where T : class
 		{
 			string key = GetCacheKeyNameFromObject(storedProcedure, parameters);
 
