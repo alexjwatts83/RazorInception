@@ -12,5 +12,7 @@ namespace RazorInception.Application.Interfaces
 
 		int Exectute(string storedProcedure, object parameters = null);
 		IEnumerable<T> GetData<T>(string storedProcedure, object parameters = null);
+
+		T GetSingle<T>(string storedProcedure, object parameters = null);
 	}
 }

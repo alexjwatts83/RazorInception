@@ -98,5 +98,15 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 													  commandType: CommandType.StoredProcedure);
 			}
 		}
+
+		public T GetSingle<T>(string storedProcedure, object parameters = null)
+		{
+			using (var connection = Connection)
+			{
+				return connection.QuerySingle<T>(storedProcedure,
+													  parameters,
+													  commandType: CommandType.StoredProcedure);
+			}
+		}
 	}
 }
