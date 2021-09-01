@@ -108,5 +108,15 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 													  commandType: CommandType.StoredProcedure);
 			}
 		}
+
+		public IEnumerable<T> GetCachedData<T>(string storedProcedure, object parameters = null, int cacheDuration = 60)
+		{
+			string key = GetCacheKeyNameFromObject(storedProcedure, parameters);
+
+			return _distributedCache.GetOrCreate(
+				key,
+				() => GetData<T>(storedProcedure, parameters),
+				TimeSpan.FromSeconds(cacheDuration));
+		}
 	}
 }
