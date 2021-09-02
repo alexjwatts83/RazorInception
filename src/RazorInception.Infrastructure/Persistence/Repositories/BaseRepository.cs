@@ -161,5 +161,13 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				return connection.Query<T>(sql, parameters, commandType: CommandType.Text);
 			}
 		}
+
+		public T QuerySingleOrDefault<T>(string sql, object parameters = null)
+		{
+			using (var connection = Connection)
+			{
+				return connection.QuerySingleOrDefault<T>(sql, parameters, commandType: CommandType.Text);
+			}
+		}
 	}
 }

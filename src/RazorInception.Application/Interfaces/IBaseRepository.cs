@@ -20,5 +20,6 @@ namespace RazorInception.Application.Interfaces
 		Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null);
 		Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null);
 		IEnumerable<T> Query<T>(string sql, object parameters = null);
+		T QuerySingleOrDefault<T>(string sql, object parameters = null);
 	}
 }
