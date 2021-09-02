@@ -138,7 +138,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				TimeSpan.FromSeconds(cacheDuration));
 		}
 
-		public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null)
+		public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{
@@ -146,7 +146,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null)
+		public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{
@@ -154,7 +154,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public IEnumerable<T> Query<T>(string sql, object parameters = null)
+		public IEnumerable<T> Query<T>(string sql, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{
@@ -162,7 +162,7 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public T QuerySingleOrDefault<T>(string sql, object parameters = null)
+		public T QuerySingleOrDefault<T>(string sql, object parameters = null) where T : class
 		{
 			using (var connection = Connection)
 			{

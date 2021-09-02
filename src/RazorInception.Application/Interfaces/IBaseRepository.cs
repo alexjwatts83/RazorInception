@@ -17,9 +17,9 @@ namespace RazorInception.Application.Interfaces
 		T GetSingle<T>(string storedProcedure, object parameters = null) where T : class;
 		T GetCachedSingle<T>(string storedProcedure, object parameters = null, int cacheDuration = 60) where T : class;
 
-		Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null);
-		Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null);
-		IEnumerable<T> Query<T>(string sql, object parameters = null);
-		T QuerySingleOrDefault<T>(string sql, object parameters = null);
+		Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null) where T : class;
+		Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null) where T : class;
+		IEnumerable<T> Query<T>(string sql, object parameters = null) where T : class;
+		T QuerySingleOrDefault<T>(string sql, object parameters = null) where T : class;
 	}
 }
