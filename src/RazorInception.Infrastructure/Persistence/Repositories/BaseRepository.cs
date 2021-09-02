@@ -169,5 +169,26 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				return connection.QuerySingleOrDefault<T>(sql, parameters, commandType: CommandType.Text);
 			}
 		}
+
+		public async Task<IEnumerable<T>> CachedQueryAsync<T>(string keyPrefix, string sql, object parameters = null, int cacheDuration = 60)
+			where T : class
+		{
+			string key = GetCacheKeyNameFromObject(keyPrefix, parameters);
+
+			return await _distributedCache.GetOrCreateAsync(
+				key,
+				async () => await QueryAsync<T>(sql, parameters),
+				TimeSpan.FromSeconds(cacheDuration));
+		}
+
+		public async Task<T> CachedQuerySingleOrDefaultAsync<T>(string keyPrefix, string sql, object parameters = null, int cacheDuration = 60) where T : class
+		{
+			string key = GetCacheKeyNameFromObject(keyPrefix, parameters);
+
+			return await _distributedCache.GetOrCreateAsync(
+				key,
+				async () => await QuerySingleOrDefaultAsync<T>(sql, parameters),
+				TimeSpan.FromSeconds(cacheDuration));
+		}
 	}
 }
