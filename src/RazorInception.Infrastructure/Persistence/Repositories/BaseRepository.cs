@@ -137,5 +137,21 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				() => GetSingle<T>(storedProcedure, parameters),
 				TimeSpan.FromSeconds(cacheDuration));
 		}
+
+		public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object parameters = null)
+		{
+			using (var connection = Connection)
+			{
+				return await connection.QueryAsync<T>(sql, parameters, commandType: CommandType.Text);
+			}
+		}
+
+		public async Task<T> QuerySingleOrDefaultAsync<T>(string sql, object parameters = null)
+		{
+			using (var connection = Connection)
+			{
+				return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters, commandType: CommandType.Text);
+			}
+		}
 	}
 }
