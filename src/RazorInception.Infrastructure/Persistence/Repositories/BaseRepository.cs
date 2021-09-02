@@ -153,5 +153,13 @@ namespace RazorInception.Infrastructure.Persistence.Repositories
 				return await connection.QuerySingleOrDefaultAsync<T>(sql, parameters, commandType: CommandType.Text);
 			}
 		}
+
+		public IEnumerable<T> Query<T>(string sql, object parameters = null)
+		{
+			using (var connection = Connection)
+			{
+				return connection.Query<T>(sql, parameters, commandType: CommandType.Text);
+			}
+		}
 	}
 }
