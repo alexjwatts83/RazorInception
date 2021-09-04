@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RazorInception.Application.Interfaces;
+using RazorInception.Domain;
 using RazorInception.Infrastructure.Persistence.Configuration;
 using RazorInception.Infrastructure.Persistence.Repositories;
-using System;
+using RazorInception.Infrastructure.Persistence.TypeHandler;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RazorInception.Infrastructure.Persistence
 {
@@ -19,6 +18,7 @@ namespace RazorInception.Infrastructure.Persistence
 
 			services.AddScoped(typeof(IBaseRepository), typeof(BaseRepository));
 
+			SqlMapper.AddTypeHandler(typeof(IEnumerable<TodoItem>), new JsonObjectTypeHandler());
 
 			return services;
 		}

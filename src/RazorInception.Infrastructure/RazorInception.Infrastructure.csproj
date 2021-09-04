@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RazorInception.Application\RazorInception.Application.csproj" />
+    <ProjectReference Include="..\RazorInception.Domain\RazorInception.Domain.csproj" />
   </ItemGroup>
 
 </Project>
