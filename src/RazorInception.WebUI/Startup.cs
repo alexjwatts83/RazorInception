@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RazorInception.WebUI.StartupServices;
 
 namespace RazorInception.WebUI
 {
@@ -24,7 +25,8 @@ namespace RazorInception.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-        }
+			services.AddCustomRouting();
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,6 +43,7 @@ namespace RazorInception.WebUI
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
