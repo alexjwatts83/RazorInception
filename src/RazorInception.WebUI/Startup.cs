@@ -26,6 +26,8 @@ namespace RazorInception.WebUI
         {
             services.AddRazorPages();
 			services.AddCustomRouting();
+			services.AddCustomCorsPolicy();
+			services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.IgnoreNullValues = true);
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +52,13 @@ namespace RazorInception.WebUI
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+			app.UseCustomCorsPolicy();
+
+			app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
-            });
+				endpoints.MapRazorPages();
+				endpoints.MapControllers();
+			});
         }
     }
 }
