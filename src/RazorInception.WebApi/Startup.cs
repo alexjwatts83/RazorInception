@@ -32,7 +32,17 @@ namespace RazorInception.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RazorInception.WebApi", Version = "v1" });
             });
-        }
+			services.AddCors(options =>
+			{
+				options.AddPolicy("api", builder =>
+				{
+					builder
+						.AllowAnyOrigin()
+						.AllowAnyMethod()
+						.AllowAnyHeader();
+				});
+			});
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,7 +60,9 @@ namespace RazorInception.WebApi
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+			app.UseCors("api");
+
+			app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
